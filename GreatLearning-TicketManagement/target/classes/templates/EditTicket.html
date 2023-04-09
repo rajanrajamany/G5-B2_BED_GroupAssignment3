@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Ticket Tracker Application</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.tiny.cloud/1/xef671yx4yp5gsryvh34brkkp16b10yudlv57kga42r2iwyl/tinymce/5/tinymce.min.js"
+	referrerpolicy="origin"></script>
+<!-- <script type="text/javascript">
+tinymce.init({
+    selector: '#content'
+});	
+</script>
+ -->
+<script type="text/javascript">
+	tinymce
+			.init({
+				selector : '#content',
+				plugins : [ 'a11ychecker', 'advlist', 'advcode', 'advtable',
+						'autolink', 'checklist', 'export', 'lists', 'link',
+						'image', 'charmap', 'preview', 'anchor',
+						'searchreplace', 'visualblocks', 'powerpaste',
+						'fullscreen', 'formatpainter', 'insertdatetime',
+						'media', 'table', 'help', 'wordcount' ],
+				toolbar : 'styleselect | undo redo | a11ycheck casechange blocks | bold italic backcolor | alignleft aligncenter alignright alignjustify |'
+						+ 'bullist numlist checklist outdent indent | removeformat | code table help',
+				menubar : false
+			})
+</script>
+</head>
+<body>
+	<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+		<!-- Brand -->
+		<a class="navbar-brand" href="#">Ticket Tracker Application</a>
+
+		<!-- Toggler/collapsibe Button -->
+		<button class="navbar-toggler" type="button" data-toggle="collapse"
+			data-target="#collapsibleNavbar">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+
+		<!-- Navbar links -->
+		<div class="collapse navbar-collapse" id="collapsibleNavbar">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" th:href="@{/tickets}">Tickets</a></li>
+			</ul>
+		</div>
+		<div class="collapse navbar-collapse" id="collapsibleNavbar"
+			Style="width: 90%;">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link"
+					th:href="@{/newTicket}">New Ticket</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<br>
+	<br>
+	<div class="container" style="width: 50%; border: 1px solid RosyBrown;">
+		<div class="row">
+
+			<!--  <div class="mx-auto col-1 col-md-8 col-lg-6">-->
+			<div class="mx-auto col-1 col-md-10 col-lg-12">
+				<div style="background-color: PowderBlue">
+					<h1 style="text-align: center;">Edit Ticket</h1>
+				</div>
+
+				<!-- Form -->
+				<!--  				<form class="form-example" action="" method="post" th:action="@{/employees}" th:object="${emps}" method="POST">
+-->
+
+				<form th:action="@{/tickets/update/{id} (id=${tckt.id})}"
+					th:object="${tckt}" method="POST">
+					<p class="description"></p>
+					<!-- Input fields -->
+					<div class="form-group">
+						<label for="title">Title</label> <input type="text"
+							th:field="*{tcktTitle}" class="form-control" id="title"
+							placeholder="Enter Ticket Title" name="title" />
+					</div>
+					<div class="form-group">
+						<label for="shortdescription">Short Description</label>
+						<textarea rows="2" cols="80" id="shortdescription"
+							th:field="*{tcktDescription}"
+							placeholder="Enter ticket description" name="shortdescription"></textarea>
+					</div>
+
+					<div class="form-group">
+						<label for="content">Content</label>
+						<textarea rows="2" cols="80" id="content"
+							th:field="*{tcktContent}" placeholder="Enter content"
+							name="content">
+						</textarea>
+					</div>
+
+					<button type="submit" class="btn btn-primary btn-customized mt-4">
+						Save</button>
+
+				</form>
+				<br>
+				<!-- Form end -->
+			</div>
+		</div>
+	</div>
+	<br>
+
+
+</body>
+</html>
